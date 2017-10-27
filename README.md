@@ -18,7 +18,11 @@ operations can be executed and then it gets destroyed again.
 Compiling
 ----------
 
-Dependencies: `openssl`
+Dependencies:
+
+    `openssl`, `cmake`, `pkg-config`, `check` (unit test framework for C),
+    `uriparser` (liburiparser1, liburiparser-dev on debian),
+    `libcurl4-openssl-dev`
 
     mkdir build
     cmake ..
