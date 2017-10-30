@@ -28,3 +28,18 @@ Dependencies:
     cmake ..
     make
     make test
+
+Building Debian Package
+------------------------
+
+The Debian packaging is done via Vagrant. To create the libscep and Perl
+library packages, run the following:
+
+    vagrant up
+    vagrant ssh --command /vagrant/package/make-deb.sh
+
+The resulting debian package files will be copied to the current directory.
+
+NOTE: The current support for building packages is proof-of-concept. The
+package versions must be set manually in the debian/\* files.
+
