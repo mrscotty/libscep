@@ -1,0 +1,28 @@
+Source: libscep
+Priority: optional
+Maintainer: Scott Hardin <shardin@whiterabbitsecurity.com>
+Build-Depends: debhelper (>= 9), cmake
+Standards-Version: 3.9.5
+Section: libs
+Homepage: https://github.com/openxpki/libscep
+#Vcs-Git: git://anonscm.debian.org/collab-maint/libscep.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/libscep.git;a=summary
+
+#Package: libscep-dev
+#Section: libdevel
+#Architecture: any
+#Depends: libscep (= ${binary:Version}), ${misc:Depends}
+#Description: C implementation of the SCEP protocol
+# libscep implements the SCEP protocol
+# (http://tools.ietf.org/html/draft-nourse-scep-23) as a C library
+# and additionally provides a command line client that allows to operate the 
+# program without need to write an implementation of this library.
+
+Package: libscep
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C implementation of the SCEP protocol
+ libscep implements the SCEP protocol
+ (http://tools.ietf.org/html/draft-nourse-scep-23) as a C library
+ and additionally provides a command line client that allows to operate the 
+ program without need to write an implementation of this library.

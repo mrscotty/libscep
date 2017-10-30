@@ -1,0 +1,9 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: libscep
+Source: <https://github.com/openxpki/libscep>
+
+Files: *
+Copyright: 2017 Florian Ruechel
+           2017 Gideon Knoeke
+           2017 Scott Hardin
+License: Apache License, Version 2.0, January 2004
