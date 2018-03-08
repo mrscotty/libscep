@@ -240,18 +240,22 @@ static SCEP_ERROR handle_encrypted_content(
             EVP_PKEY_free(pub);
 
             int passwd_index = X509_REQ_get_attr_by_NID(data->request, NID_pkcs9_challengePassword, -1);
-            if(passwd_index == -1)
-                SCEP_ERR(SCEPE_INVALID_CONTENT, "The CSR MUST contain a challenge password");
 
-            /* extract challenge password */
-            X509_ATTRIBUTE *attr = X509_REQ_get_attr(data->request, passwd_index);
-            if(attr->single == 0) { // set
+	    /* challenge password is optional according to SCEP draft */
+            if(passwd_index != -1) {
+
+	      /* extract challenge password */
+	      X509_ATTRIBUTE *attr = X509_REQ_get_attr(data->request, passwd_index);
+	      if(attr->single == 0) { // set
                 if(sk_ASN1_TYPE_num(attr->value.set) != 1)
-                    SCEP_ERR(SCEPE_UNHANDLED, "Unexpected number of elements in challenge password");
+		  SCEP_ERR(SCEPE_UNHANDLED, "Unexpected number of elements in challenge password");
                 data->challenge_password = sk_ASN1_TYPE_value(attr->value.set, 0);
-            } else { // single
+	      } else { // single
                 data->challenge_password = attr->value.single;
-            }
+	      }
+	    } else {
+	      data->challenge_password = NULL;
+	    }
             break;
         case SCEP_MSG_GETCERTINITIAL:
             ias_data_size = BIO_get_mem_data(decData, &ias_data);

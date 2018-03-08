@@ -175,10 +175,6 @@ SCEP_ERROR scep_pkcsreq(
 	if(!req_pubkey)
 		SCEP_ERR(SCEPE_INVALID_CONTENT, "Need public key on CSR");
 
-	passwd_index = X509_REQ_get_attr_by_NID(req, NID_pkcs9_challengePassword, -1);
-	if(passwd_index == -1)
-		SCEP_ERR(SCEPE_INVALID_CONTENT, "Need challenge password field on CSR");
-
 	databio = BIO_new(BIO_s_mem());
 	if(!databio)
 		OSSL_ERR("Could not create data BIO");
