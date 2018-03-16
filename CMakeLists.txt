@@ -17,6 +17,14 @@ include (CheckTypeSize)
 set (libscep_VERSION_MAJOR 0)
 set (libscep_VERSION_MINOR 0)
 
+if(LIB64)
+    set(LIBSUFFIX 64)
+else()
+    set(LIBSUFFIX "")
+endif()
+
+set(INSTALL_LIB_DIR lib${LIBSUFFIX} CACHE PATH "Installation directory for libraries")
+makr_as_advanced(INSTALL_LIB_DIR)
 
 configure_file (
     "${PROJECT_SOURCE_DIR}/src/scep.h.in"
